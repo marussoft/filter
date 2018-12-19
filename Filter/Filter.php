@@ -6,10 +6,13 @@ namespace Marussia\Components\Filter;
 
 class Filter
 {
+    // Массив фильтров
     private $filters;
     
+    // задача на обработку
     private $task;
     
+    // Слудующий обработчик
     private $handle;
 
     public function __construct(array $filters, $handle)
@@ -19,7 +22,8 @@ class Filter
         $this->handle = $handle;
     }
     
-    public function run($task)
+    // Запускает фильтрацию задачи
+    public function run($task) : void
     {
         $this->task = $task;
         
@@ -28,7 +32,8 @@ class Filter
         $this->runFilter();
     }
     
-    public function next()
+    // Запускает следующий фильтр
+    public function next() : void
     {
         if ($this->task === null) {
             return;
@@ -42,19 +47,22 @@ class Filter
         $this->runFilter();
     }
     
-    public function break()
+    // Останавливает обработку задачи
+    public function break() : void
     {
         $this->task = null;
     }
     
-    private function runFilter()
+    // Запускает текущий фильтр
+    private function runFilter() : void
     {
         $filter = current($this->filters);
 
         $filter->run($this->task, $this);
     }
     
-    private function nextHandle()
+    // Передает задачу в следующий обработчик
+    private function nextHandle() : void
     {
         $this->handle->run($this->task);
     }
