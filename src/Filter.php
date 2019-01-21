@@ -27,9 +27,15 @@ class Filter
     {
         $this->task = $task;
         
-        reset($this->filters);
+        if (empty($this->filters)) {
         
-        $this->runFilter();
+            $this->nextHandler();
+            
+        } else {
+        
+            reset($this->filters);
+            $this->runFilter();
+        }
     }
     
     // Запускает следующий фильтр
