@@ -1,0 +1,25 @@
+{
+    "name": "marussia/filter",
+    "description": "Marussia filter",
+    "license": "MIT",
+    "keywords": [
+        "filter"
+    ],
+    "authors": [
+        {
+            "name": "Mikhail Ilinsky",
+            "email": "mail@milinsky.ru"
+        }
+    ],
+    "support": {
+        "docs": "https://docs.marussia.org/filter/"
+    },
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marussia\\Filter\\": "src/"
+        }
+    }
+}

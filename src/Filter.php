@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marussia\Components\Filter;
+namespace Marussia\Filter;
 
 class Filter
 {
@@ -13,13 +13,13 @@ class Filter
     private $task;
     
     // Слудующий обработчик
-    private $handle;
+    private $handler;
 
-    public function __construct(array $filters, $handle)
+    public function __construct(array $filters, $handler)
     {
         $this->filters = $filters;
         
-        $this->handle = $handle;
+        $this->handler = $handler;
     }
     
     // Запускает фильтрацию задачи
@@ -40,7 +40,7 @@ class Filter
         }
     
         if (next($this->filters) === false) {
-            $this->nextHandle();
+            $this->nextHandler();
             return;
         }
         
@@ -62,9 +62,9 @@ class Filter
     }
     
     // Передает задачу в следующий обработчик
-    private function nextHandle() : void
+    private function nextHandler() : void
     {
-        $this->handle->run($this->task);
+        $this->handler->run($this->task);
     }
     
 }
